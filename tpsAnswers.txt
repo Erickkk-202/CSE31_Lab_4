@@ -1,0 +1,103 @@
+1. Open MemCast.c, compile and run the program. What do you expect the program to print? (%x in
+printf allows an integer to be printed in Hex format).
+
+I expect it to print 02 since every element is addressed as 2.
+
+2. Before changing the code, what do you expect the program to print if you print four_ints[0]
+again at the end of the program?
+
+I expect to see a 2.
+
+3. Insert a print statement to output four_ints[0] at the end of the program and verify your answer
+from (2).
+ 
+ when running the code it prints 2 and 44434241
+
+4. Now add a print statement to the program so it will print out four_ints[1]. What does it print? Are
+you surprised (or lost) by the results?
+
+When printing four_ints[1] it prints out 2 and 2. I am lost I am not sure why it printed out 2 again.
+
+5. Let us study the code carefully and investigate what happened. No, the memory did not go crazy.
+
+
+
+a. How many array(s) were allocated in this program?
+
+There is only one array that is being allocated
+
+b. Are four_ints and four_c pointing to the same location?
+
+yes, they are pointing to the same place
+
+c. Verify your answer of (b) by printing out the values of four_ints and four_c.
+
+DONE.
+
+6. Write a loop to print out the addresses and values (in Hex) of all the elements of four_ints. What is
+the difference in addresses between two consecutive elements? Discuss what this difference means.
+
+They increase by 4 bits
+
+
+7. Use a piece of paper to draw the layout of the array horizontally so that the smallest address begins
+from the RIGHT-hand-side. Indicate the address and value of each element based on the results of
+(6). You can draw it digitally.
+
+
+
+8. Now, write a loop to print out the same information for four_c as you did in (6). What is the
+difference in addresses between two consecutive elements? Discuss what this difference means.
+
+The difference is one. it is once because it is type char.
+
+9. Use the same piece of paper (or file) from (7) to draw a similar structure for four_c.
+
+
+
+10. By comparing the layout of the array pointed by the two pointers, what do you observe in terms of how
+C accesses memory when the index of an array is incremented?
+
+The address is address + byte offset
+
+
+TPS#2
+
+
+
+1. Open Array2D.c. This program will create a n x n array of int. Explain what line #8 does.
+ Line 8 creates a double array with a double pointer.
+
+2. Since every array must be allocated in the memory before it can be used, we need to allocate the rows
+one by one. To do this, we need to be able to access the pointers from the first array (pointed by arr).
+Assuming i is the index of that array, how do we access the ith value of the array?
+
+To allocte the first array we use *(*(arr + i) + j)
+
+
+
+3. Without using array notations ([]), insert code to complete allocating all the rows and initialize all
+contents to be 0. Your code should work with different values for n. Hint: if j is the index of each
+row, how do you access arr[i][j] in pointer notation?
+
+for(i=0;i<n;i++){
+		*(arr+i)=(int*)malloc(n * sizeof(int*));
+		for(j=0;j<n;j++){
+			*(*(arr+i)+j) = 0;
+		}
+	}
+
+    you make a double for loop to access the second array
+
+4. To verify whether you have created your array correctly, we need a function to print out the array. The
+function printArray has been declared. It takes in both the array to be printed and size of array. Why
+do we need to pass the size as an argument?
+ we need to pass the size with the array because that is something c requires.
+
+
+5. Complete printArray so it prints out the content and layout of an array correctly.
+DONE.
+
+6. Now, let us modify the content of the array. Insert code to make the array into a diagonal matrix that
+looks like the following (again, do not limit the size to 5):
+DONE.
